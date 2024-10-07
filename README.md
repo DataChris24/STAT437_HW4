@@ -54,7 +54,13 @@ There are two options to be able to run the attached R markdown code files. Run 
    docker compose up
    ```
 
-   *Please note that building this container image can take up to 20 minutes. I have also included a prebuilt container image that I have uploaded to GitHub to speed up the build process. If using this prebuilt container, some modifications to the* `docker-compose.yaml` *file will need to be made*
+   If you have tried to build this container and had any issues, you may need to run the following code to ensure you get a clean rebuild of the container (though you shouldn't have any issues).
+
+   ```
+   docker compose build --no-cache && docker compose up -d --force-recreate
+   ```
+
+   **NOTE:** There will be a `data` folder that is contained in the container build. This data is used for the `STAT437_Project1` repository's code. This folder was built into the container due to the large size of the file and because I built the container to be reused for all the projects done for the STAT 437 course.
 
 3. When the container `cmimsstat437` has been started, navigate to your web browser of choice and go to<br>
    `http://localhost:8787`

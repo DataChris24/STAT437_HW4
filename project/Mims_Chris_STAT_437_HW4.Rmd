@@ -64,14 +64,15 @@ library(mvtnorm)
 postProb.results <- matrix(0, ncol = 2, nrow = 1)
 # Calculate posterior probabilities for x_0 = 1.5
 # f_1(x) = ~ Gaussian(0,1) and f_2(x) ~ Gaussian(2,1)
-cndp1 <- dmvnorm(x = 1.5, mean = c(0, 1), sigma = diag(2))
-cndp2 <- dmvnorm(x =1.5, mean = c(2, 1), sigma = diag(2))
+cndp1 <- dmvnorm(x = c(1.5,1.5), mean = c(0, 1), sigma = diag(2))
+cndp2 <- dmvnorm(x = c(1.5,1.5), mean = c(2, 1), sigma = diag(2))
 fmarginal <- 0.6 * cndp1 + 0.6 * cndp2
 jp1 <- 0.6 * cndp1
 jp2 <- 0.6 * cndp2
 postp1 <- jp1/fmarginal
 postp2 <- jp2/fmarginal
-postProb.results[i,] <- c(postp1, postp2)
+postProb.results[1] <- postp1
+postProb.results[2] <- postp2
 
 colnames(postProb.results) <- c('PPCL1', 'PPCL2')
 postProb.results
